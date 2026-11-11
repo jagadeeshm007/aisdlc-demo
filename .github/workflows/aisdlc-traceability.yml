@@ -1,0 +1,40 @@
+# aisdlc traceability check (GITHUB_WORKFLOW.md section 8). Server-side backstop for the local
+# conventions: every commit in a pull request references an issue, and the PR closes one.
+name: aisdlc
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  traceability:
+    name: aisdlc/traceability
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check commit subjects and the PR body
+        env:
+          # Untrusted text is passed through the environment, never interpolated into the script.
+          PR_BODY: ${{ github.event.pull_request.body }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -eu
+          fail=0
+          pattern='^(feat|fix|chore|docs|refactor|test|perf|security|compliance)(\([a-z0-9-]+\))?: .+ \(#[0-9]+\)$'
+          while IFS= read -r line; do
+            sha="${line%% *}"; subject="${line#* }"
+            if printf '%s' "$subject" | grep -Eq "$pattern"; then
+              echo "ok   ${sha} ${subject}"
+            else
+              echo "FAIL ${sha} ${subject}"; fail=1
+            fi
+          done < <(git log --format='%h %s' "${BASE_SHA}..${HEAD_SHA}")
+          if printf '%s' "$PR_BODY" | grep -Eq '(Closes|Fixes|Resolves) #[0-9]+'; then
+            echo "ok   PR body closes an issue"
+          else
+            echo "FAIL PR body must contain 'Closes #<issue>'"; fail=1
+          fi
+          exit "$fail"
