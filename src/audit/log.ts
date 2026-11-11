@@ -1,7 +1,7 @@
 export interface AuditEntry {
   at: string;
   userId: string;
-  action: 'update';
+  action: 'update' | 'read';
   recordId: string;
 }
 
@@ -14,4 +14,8 @@ export function recordUpdate(userId: string, recordId: string): void {
 
 export function auditEntries(): readonly AuditEntry[] {
   return entries;
+}
+
+export function recordRead(userId: string, recordId: string): void {
+  entries.push({ at: new Date().toISOString(), userId, action: 'read', recordId });
 }
