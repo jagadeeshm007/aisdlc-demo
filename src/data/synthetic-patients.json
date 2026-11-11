@@ -1,0 +1,4 @@
+[
+  { "id": "SYNTH-0001", "displayName": "Test Patient A", "conditions": ["synthetic-condition-1"], "consentToResearch": false },
+  { "id": "SYNTH-0002", "displayName": "Test Patient B", "conditions": [], "consentToResearch": true }
+]

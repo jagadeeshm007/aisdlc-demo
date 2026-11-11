@@ -1,0 +1,98 @@
+{
+  "enabledPlugins": {
+    "aisdlc@aisdlc-local": true
+  },
+  "permissions": {
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.docker/config.json/**)",
+      "Read(~/.npmrc/**)",
+      "Read(~/.local/state/aisdlc/aisdlc-demo/**)",
+      "Read(~/.ssh)",
+      "Read(~/.config/gh)",
+      "Read(~/.git-credentials)",
+      "Read(~/.aws)",
+      "Read(~/.config/gcloud)",
+      "Read(~/.kube)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.npmrc)",
+      "Read(~/.local/state/aisdlc/aisdlc-demo)",
+      "Edit(.ai-sdlc/config/**)",
+      "Edit(.ai-sdlc/security/**)",
+      "Edit(.ai-sdlc/compliance/**)",
+      "Edit(.ai-sdlc/vision/**)",
+      "Edit(.ai-sdlc/architecture/decisions/**)",
+      "Edit(.claude/**)",
+      "Edit(.mcp.json)",
+      "Edit(.github/workflows/**)",
+      "Edit(.github/CODEOWNERS)",
+      "Edit(CLAUDE.md)",
+      "Edit(AGENTS.md)",
+      "Edit(**/CLAUDE.md)",
+      "Edit(**/AGENTS.md)",
+      "Bash(git push*)",
+      "Bash(git commit --no-verify*)",
+      "Bash(git commit -n *)",
+      "Bash(aisdlc approve*)",
+      "Bash(aisdlc trust*)",
+      "Bash(aisdlc keys*)",
+      "Bash(aisdlc engine*)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "credentials": {
+      "files": [
+        {
+          "path": "~/.ssh",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.config/gh",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.git-credentials",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.aws",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.config/gcloud",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.kube",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.docker/config.json",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.npmrc",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.local/state/aisdlc/aisdlc-demo",
+          "mode": "deny"
+        }
+      ]
+    },
+    "network": {
+      "allowAllUnixSockets": false
+    }
+  },
+  "env": {
+    "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB": "1"
+  }
+}

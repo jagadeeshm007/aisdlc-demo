@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "name": "aisdlc-demo",
+    "description": "Synthetic patient records service used to demo the aisdlc suite (synthetic data only)"
+  },
+  "github": {
+    "owner": "jagadeeshm007",
+    "repo": "aisdlc-demo",
+    "projectNumber": 5,
+    "defaultBranch": "main"
+  },
+  "jurisdictionsInScope": [
+    "IN",
+    "US",
+    "EU",
+    "UK"
+  ],
+  "approvers": [
+    {
+      "id": "apxor",
+      "osUser": "apxor",
+      "roles": [
+        "developer",
+        "lead"
+      ]
+    }
+  ],
+  "isolation": {
+    "engineUser": "aisdlc-engine",
+    "agentUser": "aisdlc-agent",
+    "stateDir": "~/.local/state/aisdlc/aisdlc-demo"
+  },
+  "audit": {
+    "checkpointEvery": 100,
+    "anchor": null
+  },
+  "sandbox": {
+    "network": "host",
+    "extraReadOnly": [],
+    "passEnv": [
+      "CLAUDE_CODE_OAUTH_TOKEN",
+      "LANG",
+      "TERM"
+    ]
+  },
+  "retention": {
+    "session-raw": {
+      "periodDays": 30,
+      "basis": "operational",
+      "owner": "engineering-lead"
+    },
+    "cache": {
+      "periodDays": 7,
+      "basis": "operational",
+      "owner": "engineering-lead"
+    },
+    "engine-audit": {
+      "periodDays": 365,
+      "basis": "operational (interim; map to obligation, OQ-12)",
+      "owner": "compliance-owner"
+    }
+  }
+}

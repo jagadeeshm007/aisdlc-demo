@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "2026-11-11.1",
+  "actions": {},
+  "protectedPaths": [],
+  "commands": [
+    {
+      "exe": "git",
+      "subcommands": [
+        "status",
+        "diff",
+        "log",
+        "show",
+        "branch",
+        "rev-parse",
+        "ls-files",
+        "blame"
+      ]
+    },
+    {
+      "exe": "node",
+      "timeoutMs": 300000
+    },
+    {
+      "exe": "pnpm",
+      "subcommands": [
+        "test",
+        "run",
+        "exec",
+        "list"
+      ],
+      "timeoutMs": 600000
+    },
+    {
+      "exe": "rg"
+    },
+    {
+      "exe": "ls"
+    },
+    {
+      "exe": "cat"
+    }
+  ],
+  "network": {
+    "allowedHosts": [
+      "api.anthropic.com"
+    ]
+  },
+  "approvals": {
+    "ttlMinutes": 30
+  }
+}
